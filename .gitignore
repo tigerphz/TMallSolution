@@ -1,0 +1,27 @@
+# git ignore file
+!/DLLs/
+*.exe
+*.exp
+*.ilk
+*.lib
+*.ncb
+*.log
+*.pdb
+*.vcproj.*.user
+*.suo
+*.rar
+*.scc
+*.vssscc
+*.vspscc
+._*
+[Dd]ebug
+[Rr]elease
+obj/
+[Bb]in
+!packages/build/
+Bak/
+packages/
+[Rr]elease/
+Key/
+!NuGet.exe
+.gitignore
