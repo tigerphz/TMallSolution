@@ -1,0 +1,97 @@
+﻿@model  TMall.ManageSite.ViewModel.LoginVM
+@{
+    ViewBag.Title = "后台管理系统 用户登录";
+    Layout = "~/Views/Shared/_SimpleLayout.cshtml";
+}
+@section beginscripts{
+    <script type="text/javascript" src="@Url.Content("/Scripts/libs/jquery.cookie.js")"></script>
+}
+<script type="text/javascript">
+    $(function () {
+        $("input#SysUserName").val($.cookie('username'));
+        
+        if ($.cookie('rememberme') == "true" ||
+            $.cookie('rememberme') == null) {
+            $("input#RememberMe").attr("checked", "checked")
+        }
+
+        $("#valiCode").bind("click", function () {
+            this.src = '@Url.Action("ValidateCode", "Security")' + "?time=" + (new Date()).getTime();
+        });
+
+        $("input#ValidateCode").val('');
+    });
+</script>
+<div id="login">
+    <div id="login_header">
+        <h1 class="login_logo">
+            <a href="http://demo.dwzjs.com">
+                <img src="@Url.Content("~/Content/themes/default/images/login_logo.gif")"/></a>
+        </h1>
+        <div class="login_headerContent">
+            <div class="navList">
+                <ul>
+                    <li><a href="#">设为首页</a></li>
+                    <li><a href="#" target="_blank">帮助</a></li>
+                </ul>
+            </div>
+            <h2 class="login_title">
+                <img src="@Url.Content("~/Content/themes/default/images/login_title.png")" /></h2>
+        </div>
+    </div>
+    <div id="login_content">
+        <div class="loginForm">
+            @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+            {
+                <p>
+                    @Html.LabelFor(x => x.SysUserName)
+                    @Html.TextBoxFor(x => x.SysUserName, new { @class = "login_input required", @size = "20" })
+                </p>
+                <p>
+                    @Html.LabelFor(x => x.PasswordHash)
+                    @Html.PasswordFor(x => x.PasswordHash, new
+                                                               {
+                                                                   @class = "login_input required alphanumeric",
+                                                                   @size = "20"
+                                                               })
+                </p>
+                if (@ViewBag.IsShowValidateCode)
+                {
+                <p>
+                    @Html.LabelFor(X => X.ValidateCode)
+                    @Html.TextBoxFor(x => x.ValidateCode, new { @class = "code required", @size = "5" })
+                    <span>
+                        <img id="valiCode" src="@Url.Action("ValidateCode", "Security")" alt="验证码"
+                            width="75" height="24" style=" cursor:pointer" /></span>
+                </p>
+                }
+                <p>
+                    @Html.CheckBoxFor(x => x.RememberMe)
+                    @Html.LabelFor(x => x.RememberMe)
+                </p>
+                <div class="login_bar">
+                    <input id="btnlogin" class="sub" type="submit" value=" " />
+                </div>
+            }
+        </div>
+        <div class="login_banner">
+            <img src="@Url.Content("~/Content/themes//default/images/login_banner.jpg")" /></div>
+        <div class="login_main">
+            <ul class="helpList">
+                @foreach (var error in ViewBag.ErrorMsg)
+                { 
+                    <li style=" margin-top:2px;">
+                        <label style="color: Red; font-size:13px;">@error</label></li>
+                }
+            </ul>
+            <div class="login_inner">
+            </div>
+        </div>
+    </div>
+    <div id="login_footer">
+        Copyright &copy; 2009 Tiger Inc. All Rights Reserved.
+    </div>
+</div>
+@section endscripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

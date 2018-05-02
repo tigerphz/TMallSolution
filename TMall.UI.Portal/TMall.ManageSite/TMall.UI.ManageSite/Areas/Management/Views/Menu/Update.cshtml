@@ -1,0 +1,80 @@
+﻿@model TMall.ManageSite.ViewModel.MenuVM
+<div class="pageContent">
+    @using (@Html.BeginForm("Update", "Menu", method: FormMethod.Post, htmlAttributes: new { @class = "pageForm required-validate", @onsubmit = "return validateCallback(this, dialogAjaxDone);" }))
+    {
+        @Html.Hidden("navId")
+        @Html.HiddenFor(x => x.SysNo)
+        @Html.HiddenFor(x => x.ParentNo)
+        <div class="pageFormContent" layouth="52" id="UpdateMenuContent">
+            <p>
+                <label>
+                    一级菜单：</label>
+                @Html.DropDownList("MenuUpdateLevel1", ViewBag.MenuLevel1List as List<SelectListItem>,
+                         new
+                         {
+                             @class = "combox",
+                             @ref = "MenuUpdateLeve12",
+                             @refUrl = "/Management/Menu/GetComboxSelected/{value}"
+                         })
+            </p>
+            <p>
+                <label>
+                    二级菜单：</label>
+                @Html.DropDownList("MenuUpdateLeve12", ViewBag.MenuLevel2List as List<SelectListItem>,
+                     new { @class = "combox", @data_bind = "value: updatemenuSelectedMenu" })
+            </p>
+            <p>
+                @Html.LabelFor(x => x.MenuName)
+                @Html.TextBoxFor(x => x.MenuName, new { @size = 30, @class = "required" })
+            </p>
+            <div data-bind="style:{display: updatemenuSelectedMenu()==''?'none':'block'}">
+                <p>
+                    @Html.LabelFor(x => x.MenuLinkUrl)
+                    @Html.TextBoxFor(x => x.MenuLinkUrl, new { @size = 30, @data_bind = "css: { required: updatemenuSelectedMenu()!='' }" })
+                </p>
+                <p>
+                    @Html.LabelFor(x => x.ModuleController)
+                    @Html.TextBoxFor(x => x.ModuleController, new { @size = 30, @data_bind = "css: { required: updatemenuSelectedMenu()!='' }" })
+                </p>
+            </div>
+            <p>
+                @Html.LabelFor(x => x.Sort)
+                @Html.TextBoxFor(x => x.Sort, new { @size = 30, @class = "required digits", @min = "1" })
+            </p>
+            <p>
+                @Html.LabelFor(x => x.Status)
+                @Html.DropDownListFor(x => x.Status, ViewBag.StatusList as List<SelectListItem>)
+            </p>
+            <p>
+                @Html.LabelFor(x => x.IsSelected)
+                @Html.CheckBoxFor(x => x.IsSelected)
+            </p>
+        </div>
+        <div class="formBar">
+            <ul>
+                <!--<li><a class="buttonActive" href="javascript:;"><span>保存</span></a></li>-->
+                <li>
+                    <div class="buttonActive">
+                        <div class="buttonContent">
+                            <button type="submit">
+                                保存</button></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="button">
+                        <div class="buttonContent">
+                            <button type="button" class="close">
+                                取消</button></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    }
+</div>
+<script type="text/javascript">
+    $(function () {
+        seajs.use((seajs.production ? '' : '/Scripts/') + "modules/management/updatemenu/main.js",
+             function (main) { main.Init(); }
+        );
+    });   
+</script>

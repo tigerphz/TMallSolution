@@ -1,0 +1,113 @@
+﻿@using TMall.UI.ManageSite
+@model List<TMall.ManageSite.ViewModel.MenuTierVM>
+@{
+    ViewBag.Title = "后台管理系统 首页";
+    Layout = "~/Views/Shared/_DWZLayout.cshtml";
+}
+<div id="layout">
+    <div id="header">
+        <div class="headerNav">
+            <a class="logo" href="http://j-ui.com">标志</a>
+            <ul class="nav">
+                <li><a href="#" width="600">您好：@HttpContext.Current.User.Identity.Name</a></li>
+                <li><a href="#" target="dialog" width="600">设置</a></li>
+                <li><a href="@Url.Action("Logout", "Account")">退出</a></li>
+            </ul>
+            <ul class="themeList" id="themeList">
+                <li theme="default">
+                    <div class="selected">
+                        蓝色</div>
+                </li>
+                <li theme="green">
+                    <div>
+                        绿色</div>
+                </li>
+                <li theme="purple">
+                    <div>
+                        紫色</div>
+                </li>
+                <li theme="silver">
+                    <div>
+                        银色</div>
+                </li>
+                <li theme="azure">
+                    <div>
+                        天蓝</div>
+                </li>
+            </ul>
+        </div>
+        <div id="navMenu">
+            <ul>
+                @foreach (var menu in Model)
+                { 
+                    <li @( @menu.IsSelected ? "class=selected" : "")><a href="@Url.ActionForArea("GetLeftMenu/" + @menu.SysNo.ToString(), "Menu", AreaEnum.Management.ToString())">
+                        <span>@menu.MenuName</span></a></li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div id="leftside">
+        <div id="sidebar_s">
+            <div class="collapse">
+                <div class="toggleCollapse">
+                    <div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="sidebar">
+            <div class="toggleCollapse">
+                <h2>
+                    主菜单</h2>
+                <div>
+                    收缩</div>
+            </div>
+            <div class="accordion" fillspace="sidebar">
+                @* <div class="accordionHeader">
+                    <h2>
+                        <span></span>系统管理</h2>
+                </div>
+                <div class="accordionContent">
+                    <ul class="tree">
+                        <li><a href="/Management/Menu/Index/232f976e-521e-4ef2-9cc9-a1f900e265d2" target="navTab" rel="232f976e-521e-4ef2-9cc9-a1f900e265d2">
+                            菜单管理</a></li>
+                    </ul>
+                </div>*@
+            </div>
+        </div>
+    </div>
+    <div id="container">
+        <div id="navTab" class="tabsPage">
+            <div class="tabsPageHeader">
+                <div class="tabsPageHeaderContent">
+                    <!-- 显示左右控制时添加 class="tabsPageHeaderMargin" -->
+                    <ul class="navTab-tab">
+                        <li tabid="main" class="main"><a href="javascript:;"><span><span class="home_icon">我的主页</span></span></a></li>
+                    </ul>
+                </div>
+                <div class="tabsLeft">
+                    left</div>
+                <!-- 禁用只需要添加一个样式 class="tabsLeft tabsLeftDisabled" -->
+                <div class="tabsRight">
+                    right</div>
+                <!-- 禁用只需要添加一个样式 class="tabsRight tabsRightDisabled" -->
+                <div class="tabsMore">
+                    more</div>
+            </div>
+            <ul class="tabsMoreList">
+                <li><a href="javascript:;">我的主页</a></li>
+            </ul>
+            <div class="navTab-panel tabsPageContent layoutBox">
+                <div class="page unitBox">
+                    <div class="accountInfo">
+                    </div>
+                    <div class="pageFormContent" layouth="80" style="margin-right: 230px">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="footer">
+    Copyright &copy; 2010
+</div>

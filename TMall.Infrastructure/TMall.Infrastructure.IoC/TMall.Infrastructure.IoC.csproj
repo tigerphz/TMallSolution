@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9D239565-9CB0-4B8E-9617-32D145435D7A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TMall.Infrastructure.IoC</RootNamespace>
+    <AssemblyName>TMall.Infrastructure.IoC</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <SkipPostSharp>True</SkipPostSharp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=3.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Autofac.3.0.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Configuration">
+      <HintPath>..\..\packages\Autofac.3.0.2\lib\net40\Autofac.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc">
+      <HintPath>..\..\packages\Autofac.Mvc4.3.0.0\lib\net40\Autofac.Integration.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft ASP.NET\ASP.NET MVC 4\Assemblies\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IoCConfiguration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\TMall.DomainModel\TMall.DomainModels\TMall.DomainModels.csproj">
+      <Project>{DA6C12E2-8052-4018-84AA-29369719D029}</Project>
+      <Name>TMall.DomainModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TMall.Framework\TMall.Framework.Caching\TMall.Framework.Caching.csproj">
+      <Project>{5FBA92ED-D727-4129-91F9-69429F6E15D6}</Project>
+      <Name>TMall.Framework.Caching</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TMall.Framework\TMall.Framework.Data\TMall.Framework.Data.csproj">
+      <Project>{DF42C2F3-A0FE-4CC9-836C-B2DFCF6D7904}</Project>
+      <Name>TMall.Framework.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TMall.Framework\TMall.Framework.ExceptionHanding\TMall.Framework.ExceptionHanding.csproj">
+      <Project>{411B4591-1017-4E29-8D98-A3F4E3B28550}</Project>
+      <Name>TMall.Framework.ExceptionHanding</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TMall.Framework\TMall.Framework.Logging\TMall.Framework.Logging.csproj">
+      <Project>{97990509-8D76-4981-B14C-3E98388EA1ED}</Project>
+      <Name>TMall.Framework.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TMall.Framework\TMall.Framework.Mapping\TMall.Framework.Mapping.csproj">
+      <Project>{B21E9E77-65F8-4E75-B339-439EA04F150C}</Project>
+      <Name>TMall.Framework.Mapping</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TMall.Service\TMall.Services.IBizServices\TMall.Services.IBizServices.csproj">
+      <Project>{AA3612DF-1758-409A-A6C0-7A4E44333640}</Project>
+      <Name>TMall.Services.IBizServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TMall.Service\TMall.Services.IRepository\TMall.Services.IRepository.csproj">
+      <Project>{D6011FC1-B848-4BEE-8746-3BCE9C622052}</Project>
+      <Name>TMall.Services.IRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TMall.Service\TMall.Services.Repository\TMall.Services.Repository.csproj">
+      <Project>{8B2E2597-E729-4365-8E02-B2B6D7BD0DCC}</Project>
+      <Name>TMall.Services.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TMall.Infrastructure.Core\TMall.Infrastructure.Core.csproj">
+      <Project>{E9C79DAA-8CBC-43EB-ABD3-2266EE3CA3D7}</Project>
+      <Name>TMall.Infrastructure.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TMall.Infrastructure.Data\TMall.Infrastructure.Data.csproj">
+      <Project>{E549B1E3-426E-4610-A01F-5D185D8AE099}</Project>
+      <Name>TMall.Infrastructure.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TMall.Infrastructure.Utility\TMall.Infrastructure.Utility.csproj">
+      <Project>{B0835930-71A2-47A6-B1BA-15C424C6F4D7}</Project>
+      <Name>TMall.Infrastructure.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TMall.Service\TMall.Services.BizServices\TMall.Services.BizServices.csproj">
+      <Project>{76A85F3E-57A8-46AC-825F-172AADC89B0F}</Project>
+      <Name>TMall.Services.BizServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TMall.Infrastructure.Web\TMall.Infrastructure.Web.csproj">
+      <Project>{DBED4848-DDAF-4D8B-B3A1-C75345C09205}</Project>
+      <Name>TMall.Infrastructure.Web</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

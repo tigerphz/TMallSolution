@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EFCFB176-E186-465D-BA17-6440042A6E6A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TMall.ManageSite.ViewModel</RootNamespace>
+    <AssemblyName>TMall.ManageSite.ViewModel</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\..\..\packages\AutoMapper.2.2.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation">
+      <HintPath>..\..\..\packages\FluentValidation.3.4.6.0\lib\Net40\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation.Mvc">
+      <HintPath>..\..\..\packages\FluentValidation.MVC4.3.4.6.0\lib\Net40\FluentValidation.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DWZ\DWZPageInfo.cs" />
+    <Compile Include="FluentValidators\Customer\LoginVMValidator.cs" />
+    <Compile Include="FluentValidators\Management\MenuVMValidator.cs" />
+    <Compile Include="Management\LoginVM.cs" />
+    <Compile Include="Management\PermissionTreeGridData.cs" />
+    <Compile Include="Management\RolePermissionVM.cs" />
+    <Compile Include="Management\SysUserVM.cs" />
+    <Compile Include="FluentValidators\ModelValidatorFactory.cs" />
+    <Compile Include="Management\MenuTierVM.cs" />
+    <Compile Include="Management\RoleVM.cs" />
+    <Compile Include="Management\PermissionVM.cs" />
+    <Compile Include="Management\ExceptionLogVM.cs" />
+    <Compile Include="Management\SysUserRoleVM.cs" />
+    <Compile Include="Management\UserInfo.cs" />
+    <Compile Include="Mapping\AutoMapperCreateMap.cs" />
+    <Compile Include="Mapping\Management\RolePermissionMapping.cs" />
+    <Compile Include="Mapping\Management\SysUserMapping.cs" />
+    <Compile Include="Mapping\Management\MenuMapping.cs" />
+    <Compile Include="Management\MenuVM.cs" />
+    <Compile Include="Mapping\Management\MenuTierMapping.cs" />
+    <Compile Include="Mapping\Management\RoleMapping.cs" />
+    <Compile Include="Mapping\Management\SysUserRoleMaping.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\TMall.DomainModel\TMall.DomainModels\TMall.DomainModels.csproj">
+      <Project>{DA6C12E2-8052-4018-84AA-29369719D029}</Project>
+      <Name>TMall.DomainModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\TMall.DomainModel\TMall.DomainModule.Enums\TMall.DomainModule.Enums.csproj">
+      <Project>{248F9C08-8C96-454A-ADF7-28BC04416779}</Project>
+      <Name>TMall.DomainModule.Enums</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\TMall.Infrastructure\TMall.Infrastructure.Data\TMall.Infrastructure.Data.csproj">
+      <Project>{E549B1E3-426E-4610-A01F-5D185D8AE099}</Project>
+      <Name>TMall.Infrastructure.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\TMall.Infrastructure\TMall.Infrastructure.SearchModel\TMall.Infrastructure.SearchModel.csproj">
+      <Project>{1C39DAAC-C2B4-48E0-BFD0-FF3A2687D2DA}</Project>
+      <Name>TMall.Infrastructure.SearchModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\TMall.Infrastructure\TMall.Infrastructure.Utility\TMall.Infrastructure.Utility.csproj">
+      <Project>{B0835930-71A2-47A6-B1BA-15C424C6F4D7}</Project>
+      <Name>TMall.Infrastructure.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Mapping\Management\PermissionMapping.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Mapping\Management\ExceptionLogMapping.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Customer\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

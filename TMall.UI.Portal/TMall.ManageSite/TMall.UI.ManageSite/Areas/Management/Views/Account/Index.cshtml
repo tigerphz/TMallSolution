@@ -1,0 +1,138 @@
+﻿@model List<TMall.ManageSite.ViewModel.SysUserVM>
+@using (Html.BeginForm("Index", "Account", FormMethod.Post, new { @id = "pagerForm" }))
+{
+    @Html.Hidden("PageIndex", "1")
+    @Html.Hidden("PageSize", "20")
+    @Html.Hidden("OrderField", "CreateDate")
+    @Html.Hidden("OrderDirection", "desc")
+}
+@{var navId = ViewBag.navId;}
+<div class="pageHeader">
+    <form onsubmit="return navTabSearch(this);" action="@Url.Action("Index")"  method="post">
+    @Html.Hidden("navId")
+    <div class="searchBar">
+        <table class="searchContent">
+            <tr>
+                <td>
+                    用户名称：@Html.TextBox("UserName", ViewData["UserName"]).ForSearch(QueryMethod.Like)
+                </td>
+                <td>
+                    用户状态： @Html.DropDownList("StatusDB", ViewBag.StatusList as List<SelectListItem>).ForSearch(QueryMethod.Equal)
+                </td>
+            </tr>
+        </table>
+        <div class="subBar">
+            <ul>
+                <li>
+                    <div class="buttonActive">
+                        <div class="buttonContent">
+                            <button type="submit">
+                                检索</button></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </form>
+</div>
+<div class="pageContent">
+    <div class="panelBar">
+        <ul class="toolBar">
+            <li>
+                @Html.ActionLinkEx("添加", ViewData["navId"].ToString(), "Add", new { @class = "add", @target = "navTab", @title = "添加用户", @rel = "account", @fresh = "false", @width = "560", @height = "255" })
+            </li>
+            <li>
+                @Html.ActionLinkEx("编辑", ViewData["navId"].ToString() + "/{sid_menu}", "Update", new { @class = "edit", @target = "navTab", @title = "编辑用户", @rel = "account", @fresh = "true", @width = "560", @height = "255" })
+            </li>
+            <li>
+                @Html.ActionLinkEx("删除", ViewData["navId"].ToString() + "/{sid_menu}", "Delete", new { @class = "delete", @target = "ajaxTodo", @title = "确定要删除该用户吗?" })
+            </li>
+            <li class="line">line</li>
+        </ul>
+    </div>
+    <table class="table" width="100%" layouth="137">
+        <thead>
+            <tr>
+                <th width="70" align="left">
+                    用户名称
+                </th>
+                <th width="60" align="left">
+                    昵称
+                </th>
+                <th width="150" align="left">
+                    邮箱
+                </th>
+                <th width="100" align="left">
+                    手机号码
+                </th>
+                <th width="100" align="left">
+                    QQ号码
+                </th>
+                <th width="50" align="left">
+                    性别
+                </th>
+                <th width="50" align="left">
+                    状态
+                </th>
+                <th width="100" align="left">
+                    创建时间
+                </th>
+                <th width="90" align="left">
+                    操作
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var x in Model)
+            {
+                <tr target="sid_menu" rel="@x.SysNo">
+                    <td>
+                        @x.UserName
+                    </td>
+                    <td>
+                        @x.NickName
+                    </td>
+                    <td>
+                        @x.Email
+                    </td>
+                    <td>
+                        @x.Phone
+                    </td>
+                    <td>
+                        @x.QQ
+                    </td>
+                    <td>
+                        @(@x.Gender == 1 ? "男" : "女")
+                    </td>
+                    <td>
+                        @x.Status.GetDescription()
+                    </td>
+                    <td>
+                        @x.CreateDate.Format()
+                    </td>
+                    <td>
+                        @Html.ActionLinkEx("删除", ViewData["navId"].ToString() + "/" + x.SysNo, "Delete", new { @class = "btnDel", @target = "ajaxTodo", @title = "确定要删除该用户吗?" })
+                        @Html.ActionLinkEx("编辑", ViewData["navId"].ToString() + "/" + x.SysNo, "Update", new { @class = "btnEdit", @target = "navTab", @title = "编辑用户", @rel = "account", @fresh = "true", @width = "560", @height = "255" })
+                        @Html.ActionLinkEx("绑定角色", ViewData["navId"].ToString() + "/" + x.SysNo, "BindRole", new { @class = "btnAdd", @target = "dialog", @title = "绑定角色", @rel = "account", @fresh = "true", @width = "545", @height = "295" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="panelBar">
+        <div class="pages">
+            <span>显示</span>
+            @Html.DropDownList("PageSize", new List<SelectListItem>(){ 
+                  new SelectListItem(){  Value="10" ,Text="10"},
+                  new SelectListItem(){  Value="15" ,Text="15"},
+                  new SelectListItem(){  Value="20" ,Text="20"},
+                  new SelectListItem(){  Value="30", Text="30"}
+             }, new { @onchange = "navTabPageBreak({numPerPage:this.value})", @class = "combox" })
+            <span>条，共@{@ViewBag.TotalCount}
+                条</span>
+        </div>
+        <div class="pagination" targettype="navTab" totalcount="@ViewBag.TotalCount" numperpage="@ViewBag.PageSize" pagenumshown="10"
+            currentpage="@ViewBag.PageIndex">
+        </div>
+    </div>
+</div>

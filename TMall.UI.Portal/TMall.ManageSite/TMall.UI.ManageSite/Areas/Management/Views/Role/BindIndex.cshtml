@@ -1,0 +1,19 @@
+﻿@model List<TMall.ManageSite.ViewModel.RoleVM>
+<div class="pageContent">
+    <div layouth="5" style="float: left; display: block; overflow: auto; width: 240px;
+        border: solid 1px #CCC; line-height: 21px; background: #fff" id="roleListPanel">
+        <ul class="tree treeFolder">
+            <li><a href="javascript">角色列表(选择进行绑定权限)</a>
+                <ul>
+                    @foreach (var role in Model)
+                    { 
+                        <li><a href="@Url.Action("BindPermission")/@ViewBag.navId/@role.SysNo" target="ajax" rel="jbsxBox"  title="@role.Description">@role.RoleName</a></li>
+                    }
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div id="jbsxBox" class="unitBox" style="margin-left: 246px;">
+        <!--#include virtual="list1.html" -->
+    </div>
+</div>

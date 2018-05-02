@@ -1,0 +1,109 @@
+﻿@model List<TMall.ManageSite.ViewModel.PermissionVM>
+@using (Html.BeginForm("Index", "Permission", FormMethod.Post, new { @id = "pagerForm" }))
+{
+    @Html.Hidden("PageIndex", "1")
+    @Html.Hidden("PageSize", "20")
+    @Html.Hidden("OrderField", "PermissionController")
+    @Html.Hidden("OrderDirection", "asc")
+}
+@{var navId = ViewBag.navId;}
+<div class="pageHeader">
+    <form onsubmit="return dialogSearch(this);" action="@Url.Action("PermissionLookup")"  method="post">
+    @Html.Hidden("navId")
+    <div class="searchBar">
+        <table class="searchContent">
+            <tr>
+                <td>
+                    权限名称：@Html.TextBox("PermissionName", ViewData["PermissionName"]).ForSearch(QueryMethod.Like)
+                </td>
+                <td>
+                    权限控制器：@Html.TextBox("PermissionController", ViewData["PermissionController"]).ForSearch(QueryMethod.Like)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    权限动作：@Html.TextBox("PermissionAction", ViewData["PermissionAction"]).ForSearch(QueryMethod.Like)
+                </td>
+                <td>
+                    权限状态： @Html.DropDownList("StatusDB", ViewBag.StatusList as List<SelectListItem>).ForSearch(QueryMethod.Equal)
+                </td>
+            </tr>
+        </table>
+        <div class="subBar">
+            <ul>
+                <li>
+                    <div class="buttonActive">
+                        <div class="buttonContent">
+                            <button type="submit">
+                                检索</button></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </form>
+</div>
+<div class="pageContent">
+    <table class="table" width="100%" layouth="137">
+        <thead>
+            <tr>
+                <th width="90" align="left">
+                    权限名称
+                </th>
+                <th width="60" align="left">
+                    权限控制器
+                </th>
+                <th width="60" align="left">
+                    权限动作
+                </th>
+                <th width="100" align="left">
+                    描述
+                </th>
+                <th width="20" align="left">
+                    操作
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var x in Model)
+            {
+                <tr target="sid_menu" rel="@x.SysNo">
+                    <td>
+                        @x.PermissionName
+                    </td>
+                    <td>
+                        @x.PermissionController
+                    </td>
+                    <td>
+                        @x.PermissionAction
+                    </td>
+                    <td>
+                        @x.Description
+                    </td>
+                    <td>
+                        <a class="btnSelect" href="javascript:$.bringBack({ParentID:'@x.SysNo', 
+                                             name:'@x.PermissionName @x.PermissionController @x.PermissionAction',
+                                             PermissionController:'@x.PermissionController'})"
+                            title="根权限查找带回">选择</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="panelBar">
+        <div class="pages">
+            <span>显示</span>
+            @Html.DropDownList("PageSize", new List<SelectListItem>(){ 
+                  new SelectListItem(){  Value="10" ,Text="10"},
+                  new SelectListItem(){  Value="15" ,Text="15"},
+                  new SelectListItem(){  Value="20" ,Text="20"},
+                  new SelectListItem(){  Value="30", Text="30"}
+             }, new { @onchange = "navTabPageBreak({numPerPage:this.value})", @class = "combox" })
+            <span>条，共@{@ViewBag.TotalCount}
+                条</span>
+        </div>
+        <div class="pagination" targettype="navTab" totalcount="@ViewBag.TotalCount" numperpage="@ViewBag.PageSize" pagenumshown="10"
+            currentpage="@ViewBag.PageIndex">
+        </div>
+    </div>
+</div>

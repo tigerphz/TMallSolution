@@ -1,0 +1,19 @@
+﻿@using TMall.UI.ManageSite
+@model  List<TMall.ManageSite.ViewModel.MenuTierVM>
+<div class="accordion" fillspace="sidebar">
+    @foreach (var menu in Model)
+    { 
+        <div class="accordionHeader">
+            <h2>
+                <span></span>@menu.MenuName</h2>
+        </div>
+        <div class="accordionContent">
+            <ul class="tree">
+                @foreach (var child in menu.ChildMenus)
+                { 
+                    <li><a href="@(@child.MenuLinkUrl.TrimEnd('/') + "/" + @child.SysNo.ToString())" target="navTab" rel="@child.SysNo">@child.MenuName</a></li>
+                }
+            </ul>
+        </div>
+    }
+</div>

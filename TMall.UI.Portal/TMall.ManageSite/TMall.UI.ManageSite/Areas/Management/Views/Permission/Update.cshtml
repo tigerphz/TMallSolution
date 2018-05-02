@@ -1,0 +1,63 @@
+﻿@model TMall.ManageSite.ViewModel.PermissionVM
+<div class="pageContent">
+    @using (@Html.BeginForm("Update", "Permission", method: FormMethod.Post, htmlAttributes: new { @class = "pageForm required-validate", @onsubmit = "return validateCallback(this, dialogAjaxDone);" }))
+    {
+        @Html.Hidden("navId")
+        @Html.Hidden("permission.SysNo", @Model.SysNo)
+        <div class="pageFormContent" layouth="52">
+            <p>
+                <label>
+                    顶级权限</label>
+                <input name="permission.ParentID" value="@Model.ParentID" type="hidden" />
+                <input class="" id="permission.name" name="permission.name" value="@ViewBag.topName" size="30" type="text" suggestfields="ParentID,name,PermissionController,PermissionAction"
+                    suggesturl="@Url.Action("PermissionLookup")/@ViewBag.navId/" lookupgroup="permission" suffix="" />
+                <a class="btnLook" href="@Url.Action("PermissionLookup")/@ViewBag.navId/" lookupgroup="permission" suffix="" width="670" height="405">
+                    根权限查找带回</a>
+            </p>
+            <p>
+                @Html.LabelFor(x => x.PermissionName)
+                <input class="required textInput" value="@Model.PermissionName" name="permission.PermissionName" size="30" type="text" />
+            </p>
+            <p>
+                @Html.LabelFor(x => x.PermissionController)
+                <input class="required textInput" value="@Model.PermissionController" name="permission.PermissionController" size="30"
+                    type="text" />
+            </p>
+            <p>
+                @Html.LabelFor(x => x.PermissionAction)
+                <input class="required textInput" value="@Model.PermissionAction" name="permission.PermissionAction" size="30" type="text" />
+            </p>
+            <p>
+                @Html.LabelFor(x => x.IsButton)
+                <input type="checkbox" @(@Model.IsButton ? "checked='checked'" : "") value="true" name="permission.IsButton" />
+            </p>
+            <p>
+                @Html.LabelFor(x => x.Status)
+                @Html.DropDownList("permission.Status", ViewBag.StatusList as List<SelectListItem>)
+            </p>
+            <p>
+                @Html.LabelFor(x => x.Description)
+                <textarea size="30" rows="6" name="permission.Description" cols="30" class="textInput valid">@Model.Description</textarea>
+            </p>
+        </div>
+        <div class="formBar">
+            <ul>
+                <!--<li><a class="buttonActive" href="javascript:;"><span>保存</span></a></li>-->
+                <li>
+                    <div class="buttonActive">
+                        <div class="buttonContent">
+                            <button type="submit">
+                                保存</button></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="button">
+                        <div class="buttonContent">
+                            <button type="button" class="close">
+                                取消</button></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    }
+</div>

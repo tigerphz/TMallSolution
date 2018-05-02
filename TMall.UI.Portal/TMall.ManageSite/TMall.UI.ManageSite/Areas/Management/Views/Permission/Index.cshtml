@@ -1,0 +1,137 @@
+﻿@model List<TMall.ManageSite.ViewModel.PermissionVM>
+@using (Html.BeginForm("Index", "Permission", FormMethod.Post, new { @id = "pagerForm" }))
+{
+    @Html.Hidden("PageIndex", "1")
+    @Html.Hidden("PageSize", "20")
+    @Html.Hidden("OrderField", "PermissionController")
+    @Html.Hidden("OrderDirection", "asc")
+}
+@{var navId = ViewBag.navId;}
+<div class="pageHeader">
+    <form onsubmit="return navTabSearch(this);" action="@Url.Action("Index")"  method="post">
+    @Html.Hidden("navId")
+    <div class="searchBar">
+        <table class="searchContent">
+            <tr>
+                <td>
+                    权限名称：@Html.TextBox("PermissionName", ViewData["PermissionName"]).ForSearch(QueryMethod.Like)
+                </td>
+                <td>
+                    权限控制器：@Html.TextBox("PermissionController", ViewData["PermissionController"]).ForSearch(QueryMethod.Like)
+                </td>
+                <td>
+                    权限动作：@Html.TextBox("PermissionAction", ViewData["PermissionAction"]).ForSearch(QueryMethod.Like)
+                </td>
+                <td>
+                    权限状态： @Html.DropDownList("StatusDB", ViewBag.StatusList as List<SelectListItem>).ForSearch(QueryMethod.Equal)
+                </td>
+            </tr>
+        </table>
+        <div class="subBar">
+            <ul>
+                <li>
+                    <div class="buttonActive">
+                        <div class="buttonContent">
+                            <button type="submit">
+                                检索</button></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </form>
+</div>
+<div class="pageContent">
+    <div class="panelBar">
+        <ul class="toolBar">
+            <li>
+                @Html.ActionLinkEx("添加", ViewData["navId"].ToString(), "Add", new { @class = "add", @target = "dialog", @title = "添加权限", @rel = "permission", @fresh = "false", @width = "560", @height = "355" })
+            </li>
+            <li>
+                @Html.ActionLinkEx("编辑", ViewData["navId"].ToString() + "/{sid_menu}", "Update", new { @class = "edit", @target = "dialog", @title = "编辑权限", @rel = "permission", @fresh = "true", @width = "560", @height = "385" })
+            </li>
+            <li>
+                @Html.ActionLinkEx("删除", ViewData["navId"].ToString() + "/{sid_menu}", "Delete", new { @class = "delete", @target = "ajaxTodo", @title = "确定要删除该权限吗?" })
+            </li>
+            <li class="line">line</li>
+        </ul>
+    </div>
+    <table class="table" width="100%" layouth="137">
+        <thead>
+            <tr>
+                <th width="60" align="left">
+                    权限名称
+                </th>
+                <th width="60" align="left">
+                    权限控制器
+                </th>
+                <th width="60" align="left">
+                    权限动作
+                </th>
+                <th width="35" align="left">
+                    类型
+                </th>
+                <th width="100" align="left">
+                    描述
+                </th>
+                <th width="50" align="left">
+                    状态
+                </th>
+                <th width="100" align="left">
+                    创建时间
+                </th>
+                <th width="60" align="left">
+                    操作
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var x in Model)
+            {
+                <tr target="sid_menu" rel="@x.SysNo">
+                    <td>
+                        @x.PermissionName
+                    </td>
+                    <td>
+                        @x.PermissionController
+                    </td>
+                    <td>
+                        @x.PermissionAction
+                    </td>
+                    <td>
+                        @( @x.IsButton ? "按钮" : "页面url")
+                    </td>
+                    <td>
+                        @x.Description
+                    </td>
+                    <td>
+                        @x.Status.GetDescription()
+                    </td>
+                    <td>
+                        @x.CreateDate.Format()
+                    </td>
+                    <td>
+                        @Html.ActionLinkEx("删除", ViewData["navId"].ToString() + "/" + x.SysNo, "Delete", new { @class = "btnDel", @target = "ajaxTodo", @title = "确定要删除该权限吗?" })
+                        @Html.ActionLinkEx("编辑", ViewData["navId"].ToString() + "/" + x.SysNo, "Update", new { @class = "btnEdit", @target = "dialog", @title = "编辑权限", @rel = "permission", @fresh = "true", @width = "560", @height = "385" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="panelBar">
+        <div class="pages">
+            <span>显示</span>
+            @Html.DropDownList("PageSize", new List<SelectListItem>(){ 
+                  new SelectListItem(){  Value="10" ,Text="10"},
+                  new SelectListItem(){  Value="15" ,Text="15"},
+                  new SelectListItem(){  Value="20" ,Text="20"},
+                  new SelectListItem(){  Value="30", Text="30"}
+             }, new { @onchange = "navTabPageBreak({numPerPage:this.value})", @class = "combox" })
+            <span>条，共@{@ViewBag.TotalCount}
+                条</span>
+        </div>
+        <div class="pagination" targettype="navTab" totalcount="@ViewBag.TotalCount" numperpage="@ViewBag.PageSize" pagenumshown="10"
+            currentpage="@ViewBag.PageIndex">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render(Url.Content("~/Content/themes/css/login.css"))
+    @Styles.Render(Url.Content("~/Content/themes/Site.css"))
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("beginscripts", required: false)
+</head>
+<body>
+    @RenderBody()
+    @RenderSection("endscripts", required: false)
+</body>
+</html>

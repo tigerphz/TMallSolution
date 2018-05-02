@@ -1,0 +1,54 @@
+﻿<script type="text/javascript">
+    $.fn.extend({
+        InitTreeGrid: function () {
+            var $this = $(this);
+            seajs.use((seajs.production ? '' : '/Scripts/') + "modules/management/bindpermission/main.js",
+             function (main) {
+                 var roleId = "@ViewBag.permissionRoleId";
+                 var navId = "@ViewBag.permissionNavId";
+                 var type = "@ViewBag.type";
+                 var jsonStr = '@Html.Raw(@ViewBag.permissionData)';
+
+                 var jsonData = $.parseJSON(jsonStr);
+                 main.Init(roleId, navId, jsonData, type);
+             });
+        }
+    });
+
+</script>
+<div class="pageContent" id="bindPermissionPanel">
+    <div class="panelBar">
+        <ul class="toolBar">
+            <li><a class="add selectAll" href="javascript:void(0)"><span>全选</span></a></li>
+            <li><a class="add cancelAll" href="javascript:void(0)"><span>全部取消</span></a></li>
+            <li><a class="delete collapseAll" href="javascript:void(0)"><span>收起</span></a></li>
+            <li><a class="edit ExpandAll" href="javascript:void(0)"><span>展开</span></a></li>
+            <li class="line">line</li>
+        </ul>
+    </div>
+    <div class="pageFormContent" style="padding: 0;" layouth="64">
+        <div class="permissionTreeGrid">
+            <table id="permission_@ViewBag.permissionRoleId" >
+            </table>
+        </div>
+    </div>
+    <div class="formBar">
+        <ul>
+            <!--<li><a class="buttonActive" href="javascript:;"><span>保存</span></a></li>-->
+            <li>
+                <div class="buttonActive">
+                    <div class="buttonContent">
+                        <button type="submit">
+                            保存</button></div>
+                </div>
+            </li>
+            <li>
+                <div class="button">
+                    <div class="buttonContent">
+                        <button type="button" class="close">
+                            取消</button></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

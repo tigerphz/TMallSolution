@@ -1,0 +1,17 @@
+{
+    "spm" : {
+        "output" : {
+            "relative" : [                
+				"management/addmenu/main.js",
+				"management/updatemenu/main.js"				
+            ],
+			"all":[				
+			]
+        },
+        "alias" : {
+             "knockout": "gallery/knockout/2.2.1/knockout",
+             "knockoutValidation": "gallery/knockout/2.2.1/knockout-Validation",
+             "knockoutExtentions": "gallery/knockout/2.2.1/knockout-Extentions"                     
+        }
+    }
+}

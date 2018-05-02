@@ -1,0 +1,72 @@
+﻿@model TMall.ManageSite.ViewModel.SysUserVM
+<div class="pageContent">
+    @using (@Html.BeginForm("Update", "Account", method: FormMethod.Post, htmlAttributes: new { @class = "pageForm required-validate", @onsubmit = "return validateCallback(this, navTabAjaxDone);" }))
+    {
+        @Html.Hidden("navId")
+        @Html.HiddenFor(x => x.SysNo)
+        <div class="pageFormContent" layouth="52">
+            <p>
+                @Html.LabelFor(x => x.UserName)
+                @Html.TextBoxFor(x => x.UserName, new
+                                    {
+                                        @size = 30,
+                                        @readonly = "true",
+                                        @minlength = "3",
+                                        @maxlength = "20"
+                                    })
+            </p>
+            <p>
+                @Html.LabelFor(x => x.NickName)
+                @Html.TextBoxFor(x => x.NickName, new { @size = 30 })
+            </p>
+            <p>
+                @Html.LabelFor(x => x.Email)
+                @Html.TextBoxFor(x => x.Email, new { @size = 30, @class = "email" })
+            </p>
+            <p>
+                @Html.LabelFor(x => x.Phone)
+                @Html.TextBoxFor(x => x.Phone, new { @size = 30, @class = "phone" })
+            </p>
+            <p>
+                @Html.LabelFor(x => x.QQ)
+                @Html.TextBoxFor(x => x.QQ, new { @size = 30 })
+            </p>
+            <p>
+                @Html.LabelFor(x => x.Address)
+                @Html.TextAreaFor(x => x.Address, new { @size = 30, @cols = "30", @rows = "6" })
+            </p>
+            <p>
+                @Html.LabelFor(x => x.Gender)
+                @Html.DropDownList("Gender", new List<SelectListItem>() { 
+                             new SelectListItem(){ Selected=true, Text="男", Value="1"},
+                            new SelectListItem(){  Text="女", Value="0"},
+                    })
+            </p>
+            <p>
+            </p>
+            <p>
+                @Html.LabelFor(x => x.Status)
+                @Html.DropDownListFor(x => x.Status, ViewBag.StatusList as List<SelectListItem>)
+            </p>
+        </div>
+        <div class="formBar">
+            <ul>
+                <!--<li><a class="buttonActive" href="javascript:;"><span>保存</span></a></li>-->
+                <li>
+                    <div class="buttonActive">
+                        <div class="buttonContent">
+                            <button type="submit">
+                                保存</button></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="button">
+                        <div class="buttonContent">
+                            <button type="button" class="close">
+                                取消</button></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    }
+</div>

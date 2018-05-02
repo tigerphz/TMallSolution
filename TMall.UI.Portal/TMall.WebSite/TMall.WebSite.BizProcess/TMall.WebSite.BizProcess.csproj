@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AAF9B4BB-70F3-4242-B12E-47DB4E091AD1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TMall.WebSite.BizProcess</RootNamespace>
+    <AssemblyName>TMall.WebSite.BizProcess</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <SkipPostSharp>True</SkipPostSharp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccountBizProcess.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\TMall.DomainModel\TMall.DomainModels\TMall.DomainModels.csproj">
+      <Project>{DA6C12E2-8052-4018-84AA-29369719D029}</Project>
+      <Name>TMall.DomainModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\TMall.Framework\TMall.Framework.ServiceLocation\TMall.Framework.ServiceLocation.csproj">
+      <Project>{BCEA6C0D-F7AF-4595-8A9A-ADE13ADA1C4C}</Project>
+      <Name>TMall.Framework.ServiceLocation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\TMall.Infrastructure\TMall.Infrastructure.Core\TMall.Infrastructure.Core.csproj">
+      <Project>{E9C79DAA-8CBC-43EB-ABD3-2266EE3CA3D7}</Project>
+      <Name>TMall.Infrastructure.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\TMall.Service\TMall.Services.BizServices\TMall.Services.BizServices.csproj">
+      <Project>{76A85F3E-57A8-46AC-825F-172AADC89B0F}</Project>
+      <Name>TMall.Services.BizServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\TMall.Service\TMall.Services.IBizServices\TMall.Services.IBizServices.csproj">
+      <Project>{AA3612DF-1758-409A-A6C0-7A4E44333640}</Project>
+      <Name>TMall.Services.IBizServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TMall.WebSite.IBizProcess\TMall.WebSite.IBizProcess.csproj">
+      <Project>{859822AC-E046-4E71-A8EA-7742380CEFFC}</Project>
+      <Name>TMall.WebSite.IBizProcess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TMall.WebSite.ViewModel\TMall.WebSite.ViewModel.csproj">
+      <Project>{9C6FF871-4B09-47D3-8079-936601B6E976}</Project>
+      <Name>TMall.WebSite.ViewModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

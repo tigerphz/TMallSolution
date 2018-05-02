@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    <!--[if IE]>
+<link href="@Url.Content("~/Content/themes/css/ieHack.css")" rel="stylesheet" type="text/css" media="screen"/>
+<![endif]-->
+    <style type="text/css">
+        #header
+        {
+            height: 85px;
+        }
+        #leftside, #container, #splitBar, #splitBarProxy
+        {
+            top: 90px;
+        }
+        .profiler-result
+        {
+            float:left;    
+        }
+    </style>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/dwzdebugjs")
+    @*    <script type="text/javascript" src="@Url.Content("~/Scripts/libs/dwz.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/libs/dwz.regional.zh.js")"></script>*@
+    <script type="text/javascript">
+        $(function () {
+            DWZ.init("@Url.Content("~/dwz.frag.xml")", {
+                loginUrl: "@Url.Action("Login", "Account")", loginTitle: "重新登录", // 弹出登录对话框
+                //		loginUrl:"login.html",	// 跳到登录页面
+                statusCode: { ok: 200, error: 300, timeout: 301 }, //【可选】
+                pageInfo: { pageNum: "PageIndex", numPerPage: "PageSize", orderField: "OrderField", orderDirection: "OrderDirection" }, //【可选】
+                debug: false, // 调试模式 【true|false】
+                callback: function () {
+                    initEnv();                   
+                    $("#themeList").theme({ themeBase: "/Content/themes" });
+                }
+            });
+        });
+    </script>
+    @Scripts.Render("~/bundles/seajs")
+    @RenderSection("beginscripts", required: false)
+    @StackExchange.Profiling.MiniProfiler.RenderIncludes()
+</head>
+<body scroll="no">
+    @RenderBody()
+    @RenderSection("endscripts", required: false)
+</body>
+</html>

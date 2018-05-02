@@ -1,0 +1,38 @@
+﻿@model TMall.ManageSite.ViewModel.LoginVM
+<div class="pageContent">
+    @using (@Html.BeginForm("MiniLogin", "Account", method: FormMethod.Post, htmlAttributes: new { @class = "pageForm required-validate", @onsubmit = "return validateCallback(this, dialogAjaxDone);" }))
+    {
+        <div class="pageFormContent" layouth="58">
+            <div class="unit">
+                @Html.LabelFor(x => x.SysUserName)
+                @Html.TextBoxFor(x => x.SysUserName, new { @class = "login_input required", @size = "20" })
+            </div>
+            <div class="unit">
+                @Html.LabelFor(x => x.PasswordHash)
+                @Html.PasswordFor(x => x.PasswordHash, new
+                                            {
+                                                @class = "login_input required alphanumeric",
+                                                @size = "20"
+                                            })
+            </div>
+        </div>
+        <div class="formBar">
+            <ul>
+                <li>
+                    <div class="buttonActive">
+                        <div class="buttonContent">
+                            <button type="submit">
+                                提交</button></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="button">
+                        <div class="buttonContent">
+                            <button type="button" class="close">
+                                取消</button></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    }
+</div>
